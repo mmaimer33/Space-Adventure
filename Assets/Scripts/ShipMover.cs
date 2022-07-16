@@ -84,9 +84,14 @@ public class ShipMover : MonoBehaviour
 
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
        
-            direction.x = mousePosition.x - transform.position.x;
+            direction.x = RestrictX(mousePosition.x - transform.position.x);
             direction.y = mousePosition.y - transform.position.y;
 
+            transform.right = direction;
+        }
+        else
+        {
+            direction.x = RestrictX(direction.x);
             transform.right = direction;
         }
     }
@@ -117,6 +122,28 @@ public class ShipMover : MonoBehaviour
         canvas.UpdateFuel(fuel);
     }
 
+    /// <summary>
+    /// Restricts the direction of the ship to a reasonable range.
+    /// </summary>
+    /// <param name="originalX">Calculated x direction.</param>
+    /// <returns>Restricted x direction.</returns>
+    private float RestrictX(float originalX)
+    {
+        if (originalX < 0.1f)
+        {
+            return 0.1f;
+        }
+        else
+        {
+            return originalX;
+        }
+    }
+
+    /// <summary>
+    /// Ensures the fuel value does not exceed range.
+    /// </summary>
+    /// <param name="fuel">Original fuel value.</param>
+    /// <returns>Restricted fuel value.</returns>
     private int RestrictFuel(int fuel)
     {
         if (fuel > MaxFuel)
