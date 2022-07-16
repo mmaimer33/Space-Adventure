@@ -45,6 +45,7 @@ public class ShipMover : MonoBehaviour
     void Start()
     {
         rb.AddForce(new Vector2(shipSpeed, 0), ForceMode2D.Impulse);
+        direction = new Vector2();
     }
 
     // Update is called once per frame
@@ -57,16 +58,13 @@ public class ShipMover : MonoBehaviour
             //touch = Input.GetTouch(0);
             //touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
-            //direction = new Vector2(
-            //    touchPosition.x - transform.position.x,
-            //    touchPosition.y - transform.position.y
-            //);
+            //direction.x = touchPosition.x - transform.position.x;
+            //direction.y = touchPosition.y - transform.position.y;
 
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            direction = new Vector2(
-                mousePosition.x - transform.position.x,
-                mousePosition.y - transform.position.y
-            );
+       
+            direction.x = mousePosition.x - transform.position.x;
+            direction.y = mousePosition.y - transform.position.y;
 
             transform.right = direction;
         }

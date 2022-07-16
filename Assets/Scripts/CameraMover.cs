@@ -7,16 +7,21 @@ public class CameraMover : MonoBehaviour
     [SerializeField]
     private GameObject ship;
     private float offset;
+    private Vector3 cameraMover;
 
     // Start is called before the first frame update
     void Start()
     {
         offset = ship.transform.position.x - transform.position.x;
+        cameraMover = new Vector3();
+        cameraMover.y = 0;
+        cameraMover.z = transform.position.z;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(ship.transform.position.x - offset, 0, transform.position.z);
+        cameraMover.x = ship.transform.position.x - offset;
+        transform.position = cameraMover;
     }
 }

@@ -8,7 +8,7 @@ public class CoinController : MonoBehaviour
     private Canvas canvas;
 
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
         canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
         rotationSpeed = 150;
