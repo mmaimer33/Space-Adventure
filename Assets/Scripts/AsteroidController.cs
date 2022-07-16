@@ -12,8 +12,8 @@ public class AsteroidController : MonoBehaviour
 
     private float rotationSpeed;
 
-    private const float MinForce = 0.5f;
-    private const float MaxForce = 1f;
+    private const float MinForce = 0.25f;
+    private const float MaxForce = 0.6f;
 
     #endregion
 
@@ -49,6 +49,14 @@ public class AsteroidController : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    //void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Coin")
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     #endregion
 }

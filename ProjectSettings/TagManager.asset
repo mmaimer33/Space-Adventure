@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Canvas
   - Asteroid
+  - Coin
   layers:
   - Default
   - TransparentFX

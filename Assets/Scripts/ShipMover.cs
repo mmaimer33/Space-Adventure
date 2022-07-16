@@ -8,8 +8,15 @@ public class ShipMover : MonoBehaviour
     // For the ship
     private Rigidbody2D rb;
 
+    // Fuel support
+    private const int MaxFuel = 200;
+    private const int MinFuel = 0;
+    private int fuel;
+    private Canvas canvas;
+
     // For forward motion
-    private const float InitialSpeed = 5f;
+    [SerializeField]
+    private float InitialSpeed = 5f;
     private float shipSpeed;
 
     // For rotation
@@ -30,6 +37,16 @@ public class ShipMover : MonoBehaviour
         get { return shipSpeed; }
     }
 
+    /// <summary>
+    /// The amount of fuel the ship has, between 0 and 20;
+    /// </summary>
+    /// <value>The amount to set the fuel to.</value>
+    public int Fuel
+    {
+        get { return fuel; }
+        set { fuel = RestrictFuel(value); }
+    }
+
     #endregion
 
     #region Methods
@@ -44,8 +61,12 @@ public class ShipMover : MonoBehaviour
     /// </summary>
     void Start()
     {
+        canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
+
         rb.AddForce(new Vector2(shipSpeed, 0), ForceMode2D.Impulse);
         direction = new Vector2();
+        fuel = MaxFuel;
+
     }
 
     // Update is called once per frame
@@ -76,8 +97,41 @@ public class ShipMover : MonoBehaviour
         // Moves the ship in the direction of the input, but with constant
         //  horizontal speed.
 
-        rb.AddForce(shipSpeed * direction, ForceMode2D.Force);
-        rb.velocity = new Vector2(shipSpeed, direction.y);
+        if (Input.GetMouseButton(0))
+        {
+            if (fuel > MinFuel)
+            {
+                rb.AddForce(shipSpeed * direction, ForceMode2D.Force);
+                rb.velocity = new Vector2(shipSpeed, direction.y);
+                fuel--;
+                fuel = RestrictFuel(fuel);
+            }
+        }
+        else
+        {
+            fuel += 2;
+            fuel = RestrictFuel(fuel);
+        }
+
+        // Update the fuel slider
+        canvas.UpdateFuel(fuel);
     }
+
+    private int RestrictFuel(int fuel)
+    {
+        if (fuel > MaxFuel)
+        {
+            return MaxFuel;
+        }
+        else if (fuel < MinFuel)
+        {
+            return MinFuel;
+        }
+        else
+        {
+            return fuel;
+        }
+    }
+
     #endregion
 }
