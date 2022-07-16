@@ -25,6 +25,9 @@ public class ShipMover : MonoBehaviour
     private Vector3 mousePosition;
     private Vector2 direction;
 
+    // Score support
+    private int score;
+
     #endregion
 
     #region Properties
@@ -66,7 +69,7 @@ public class ShipMover : MonoBehaviour
         rb.AddForce(new Vector2(shipSpeed, 0), ForceMode2D.Impulse);
         direction = new Vector2();
         fuel = MaxFuel;
-
+        score = 0;
     }
 
     // Update is called once per frame
@@ -120,6 +123,9 @@ public class ShipMover : MonoBehaviour
 
         // Update the fuel slider
         canvas.UpdateFuel(fuel);
+
+        score = RestrictScore((int)transform.position.x);
+        canvas.UpdateScore(score);
     }
 
     /// <summary>
@@ -137,6 +143,20 @@ public class ShipMover : MonoBehaviour
         {
             return originalX;
         }
+    }
+
+    /// <summary>
+    /// Restricts the score so it is always above 0.
+    /// </summary>
+    /// <param name="score">Current score.</param>
+    /// <returns>Restricted score.</returns>
+    private int RestrictScore(int score)
+    {
+        if (score < 0)
+        {
+            return 0;
+        }
+        return score;
     }
 
     /// <summary>
