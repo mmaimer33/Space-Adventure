@@ -25,6 +25,9 @@ public class ShipMover : MonoBehaviour
     private Vector3 mousePosition;
     private Vector2 direction;
 
+    // Score support
+    private int score;
+
     #endregion
 
     #region Properties
@@ -66,7 +69,7 @@ public class ShipMover : MonoBehaviour
         rb.AddForce(new Vector2(shipSpeed, 0), ForceMode2D.Impulse);
         direction = new Vector2();
         fuel = MaxFuel;
-
+        score = 0;
     }
 
     // Update is called once per frame
@@ -84,9 +87,14 @@ public class ShipMover : MonoBehaviour
 
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
        
-            direction.x = mousePosition.x - transform.position.x;
+            direction.x = RestrictX(mousePosition.x - transform.position.x);
             direction.y = mousePosition.y - transform.position.y;
 
+            transform.right = direction;
+        }
+        else
+        {
+            direction.x = RestrictX(direction.x);
             transform.right = direction;
         }
     }
@@ -115,8 +123,47 @@ public class ShipMover : MonoBehaviour
 
         // Update the fuel slider
         canvas.UpdateFuel(fuel);
+
+        score = RestrictScore((int)transform.position.x);
+        canvas.UpdateScore(score);
     }
 
+    /// <summary>
+    /// Restricts the direction of the ship to a reasonable range.
+    /// </summary>
+    /// <param name="originalX">Calculated x direction.</param>
+    /// <returns>Restricted x direction.</returns>
+    private float RestrictX(float originalX)
+    {
+        if (originalX < 0.1f)
+        {
+            return 0.1f;
+        }
+        else
+        {
+            return originalX;
+        }
+    }
+
+    /// <summary>
+    /// Restricts the score so it is always above 0.
+    /// </summary>
+    /// <param name="score">Current score.</param>
+    /// <returns>Restricted score.</returns>
+    private int RestrictScore(int score)
+    {
+        if (score < 0)
+        {
+            return 0;
+        }
+        return score;
+    }
+
+    /// <summary>
+    /// Ensures the fuel value does not exceed range.
+    /// </summary>
+    /// <param name="fuel">Original fuel value.</param>
+    /// <returns>Restricted fuel value.</returns>
     private int RestrictFuel(int fuel)
     {
         if (fuel > MaxFuel)

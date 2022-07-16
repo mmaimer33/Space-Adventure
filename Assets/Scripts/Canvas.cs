@@ -11,7 +11,6 @@ public class Canvas : MonoBehaviour
     // Coins Text
     [SerializeField]
     TextMeshProUGUI coinsText;
-
     private int coinsCollected;
     private const string coinsCollectedPrefix = "Coins Collected: ";
 
@@ -21,6 +20,10 @@ public class Canvas : MonoBehaviour
     private const int MaxFuel = 200;
 
     // Score Text
+    [SerializeField]
+    TextMeshProUGUI scoreText;
+    private int score;
+    private const string scorePrefix = "Score: ";
 
     #endregion
 
@@ -38,8 +41,13 @@ public class Canvas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize coins
         coinsCollected = 0;
         coinsText.text = coinsCollectedPrefix + coinsCollected.ToString();
+
+        // Initialize score
+        score = 0;
+        scoreText.text = scorePrefix + score.ToString();
     }
 
     /// <summary>
@@ -49,6 +57,15 @@ public class Canvas : MonoBehaviour
     {
         coinsCollected++;
         coinsText.text = coinsCollectedPrefix + coinsCollected.ToString();
+    }
+
+    /// <summary>
+    /// Updates the score.
+    /// </summary>
+    /// <param name="scoreValue">New score.</param>
+    public void UpdateScore(int scoreValue)
+    {
+        scoreText.text = scorePrefix + scoreValue.ToString();
     }
 
     /// <summary>
