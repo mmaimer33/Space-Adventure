@@ -21,6 +21,11 @@ public static class MenuManager
 
                 Object.Instantiate(Resources.Load("PauseMenu"));
                 break;
+
+            case MenuName.GameOver:
+
+                Object.Instantiate(Resources.Load("GameOverMenu"));
+                break;
         }
     }
 }
