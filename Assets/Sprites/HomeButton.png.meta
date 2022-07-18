@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d8616ebf6fa4e4fe5a252d2a4d952587
+guid: 37b01a34b3a1f46bb9e7c15fb9cc7081
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,12 +128,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ResumeButton_0
+      name: HomeButton_0
       rect:
         serializedVersion: 2
         x: 325
         y: 0
-        width: 710
+        width: 712
         height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -142,19 +142,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c4cdec7f3a6c4b44b6fcedbbca32e75
-      internalID: 264892926
+      spriteID: 0bf6c54d1b523477bab59181e3ae086d
+      internalID: -388314864
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ResumeButton_1
+      name: HomeButton_1
       rect:
         serializedVersion: 2
-        x: 1035
+        x: 1039
         y: 0
-        width: 710
+        width: 712
         height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -163,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a196398683424e2591689d50e59b95e
-      internalID: -1469258088
+      spriteID: 1d4fc7c15d6104ae5907c37f7e63bc10
+      internalID: -126167042
       vertices: []
       indices: 
       edges: []
@@ -180,8 +180,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ResumeButton_1: -1469258088
-      ResumeButton_0: 264892926
+      HomeButton_0: -388314864
+      HomeButton_1: -126167042
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -75,7 +75,7 @@ public class ShipMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.touchCount > 0)
+        //if (Input.touchCount == 1)
         if (Input.GetMouseButton(0))
         {
             // Gets the input position and makes the ship point that way.
@@ -91,6 +91,13 @@ public class ShipMover : MonoBehaviour
             direction.y = mousePosition.y - transform.position.y;
 
             transform.right = direction;
+        }
+        //else if (Input.touchCount == 2 &&
+        //    Input.GetTouch(2).phase == TouchPhase.Began)
+        else if (Input.GetMouseButtonDown(1))
+        {
+            // Open the pause menu
+            MenuManager.GoToMenu(MenuName.Pause);
         }
         else
         {
