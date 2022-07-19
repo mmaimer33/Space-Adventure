@@ -20,13 +20,15 @@ public class ShipMover : MonoBehaviour
     private float shipSpeed;
 
     // For rotation
-    //private Touch touch;
     //private Vector3 touchPosition;
     private Vector3 mousePosition;
     private Vector2 direction;
 
     // Score support
     private int score;
+
+    // Pausing
+    private bool paused;
 
     #endregion
 
@@ -50,6 +52,15 @@ public class ShipMover : MonoBehaviour
         set { fuel = RestrictFuel(value); }
     }
 
+    /// <summary>
+    /// True if ship is paused, false otherwise.
+    /// </summary>
+    public bool Paused
+    {
+        get { return paused; }
+        set { paused = value; }
+    }
+
     #endregion
 
     #region Methods
@@ -70,27 +81,38 @@ public class ShipMover : MonoBehaviour
         direction = new Vector2();
         fuel = MaxFuel;
         score = 0;
+
+        paused = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.touchCount > 0)
+        //if (Input.touchCount == 1)
         if (Input.GetMouseButton(0))
         {
             // Gets the input position and makes the ship point that way.
-            //touch = Input.GetTouch(0);
-            //touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+            //touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-            //direction.x = touchPosition.x - transform.position.x;
+            //direction.x = RestrictX(touchPosition.x - transform.position.x);
             //direction.y = touchPosition.y - transform.position.y;
 
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-       
+
             direction.x = RestrictX(mousePosition.x - transform.position.x);
             direction.y = mousePosition.y - transform.position.y;
 
             transform.right = direction;
+        }
+        //else if (Input.touchCount == 2 && Input.GetTouch(1).phase == TouchPhase.Began)
+        else if (Input.GetMouseButtonDown(1))
+        {
+            // Open the pause menu if not already paused
+            if (!paused)
+            {
+                paused = true;
+                MenuManager.GoToMenu(MenuName.Pause);
+            }
         }
         else
         {
