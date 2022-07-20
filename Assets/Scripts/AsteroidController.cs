@@ -7,8 +7,7 @@ public class AsteroidController : MonoBehaviour
     #region Fields
 
     // Cache Rigidbody2D, Vectors for movement.
-    [SerializeField]
-    private float maxRotationSpeed;
+    private const float maxRotationSpeed = 30;
 
     private float rotationSpeed;
 

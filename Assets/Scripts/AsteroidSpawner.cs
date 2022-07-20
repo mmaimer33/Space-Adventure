@@ -6,8 +6,9 @@ public class AsteroidSpawner : MonoBehaviour
 {
     #region Fields
 
+    // GameObjects
     [SerializeField]
-    private GameObject asteroid;
+    private GameObject[] asteroids;
     [SerializeField]
     private GameObject ship;
 
@@ -53,7 +54,8 @@ public class AsteroidSpawner : MonoBehaviour
         location.x = Random.Range(minX, maxX);
         location.y = Random.Range(minY, maxY);
 
-        Instantiate<GameObject>(asteroid, location, transform.rotation);
+        Instantiate<GameObject>(asteroids[Random.Range(0, asteroids.Length)],
+            location, transform.rotation);
     }
 
     #endregion
