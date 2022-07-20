@@ -23,6 +23,7 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     public void HandleResumeButtonOnClick()
     {
+        AudioManager.Play(AudioClipName.Button1);
         // Unpause game and destroy self.
         ship.Paused = false;
         Time.timeScale = 1;
@@ -31,6 +32,7 @@ public class PauseMenu : MonoBehaviour
 
     public void HandleHomeButtonOnClick()
     {
+        AudioManager.Play(AudioClipName.Button1);
         // Unpause game and return to Home.
         ship.Paused = false;
         Time.timeScale = 1;
