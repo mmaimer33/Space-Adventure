@@ -7,8 +7,7 @@ public class AsteroidController : MonoBehaviour
     #region Fields
 
     // Cache Rigidbody2D, Vectors for movement.
-    [SerializeField]
-    private float maxRotationSpeed;
+    private const float maxRotationSpeed = 30;
 
     private float rotationSpeed;
 
@@ -50,13 +49,17 @@ public class AsteroidController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "Coin")
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+    /// <summary>
+    /// Trigger Game Over if collides with ship.
+    /// </summary>
+    /// <param name="collision">Provided by engine</param>
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "Ship")
+        {
+            MenuManager.GoToMenu(MenuName.GameOver);
+        }
+    }
 
     #endregion
 }
