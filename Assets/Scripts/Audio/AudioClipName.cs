@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// An enumeration of all the audio clips in the game.
+/// An enumeration of all the sound effect clips in the game.
 /// </summary>
 public enum AudioClipName
 {
-    Background1,
-    Background2,
-    Background3,
     Button1,
     Button2,
     ButtonPlay,

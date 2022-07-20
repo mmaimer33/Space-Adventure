@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manager for in-game sounds.
+/// </summary>
 public static class AudioManager
 {
     #region Fields
@@ -35,9 +38,6 @@ public static class AudioManager
     {
         audioSource = source;
 
-        audioClips.Add(AudioClipName.Background1, Resources.Load<AudioClip>("Background1"));
-        audioClips.Add(AudioClipName.Background2, Resources.Load<AudioClip>("Background2"));
-        audioClips.Add(AudioClipName.Background3, Resources.Load<AudioClip>("Background3"));
         audioClips.Add(AudioClipName.Button1, Resources.Load<AudioClip>("Button1"));
         audioClips.Add(AudioClipName.Button2, Resources.Load<AudioClip>("Button2"));
         audioClips.Add(AudioClipName.ButtonPlay, Resources.Load<AudioClip>("ButtonPlay"));
@@ -48,6 +48,8 @@ public static class AudioManager
         audioClips.Add(AudioClipName.Rocket, Resources.Load<AudioClip>("Rocket"));
         audioClips.Add(AudioClipName.RocketNoFuel, Resources.Load<AudioClip>("RocketNoFuel"));
         audioClips.Add(AudioClipName.ScoreMarker, Resources.Load<AudioClip>("ScoreMarker"));
+
+        initialized = true;
     }
 
     public static void Play(AudioClipName name)
