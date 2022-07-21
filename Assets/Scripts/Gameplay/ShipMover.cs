@@ -12,6 +12,7 @@ public class ShipMover : MonoBehaviour
     private const int MaxFuel = 200;
     private const int MinFuel = 0;
     private int fuel;
+    private int increaseFuelByAmount = 1;
     private Canvas canvas;
 
     // For forward motion
@@ -151,7 +152,7 @@ public class ShipMover : MonoBehaviour
         }
         else
         {
-            fuel += 2;
+            fuel += increaseFuelByAmount;
             fuel = RestrictFuel(fuel);
         }
 

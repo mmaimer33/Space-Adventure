@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Listens for and handles. on-click events from Main Menu buttons.
+/// Listens for and handles on-click events from Main Menu buttons.
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
@@ -24,5 +24,23 @@ public class MainMenu : MonoBehaviour
     {
         AudioManager.Play(AudioClipName.Button1);
         Application.Quit();
+    }
+
+    /// <summary>
+    /// Handles on-click event of settings button: goes to settings page.
+    /// </summary>
+    public void HandleSettingsButtonOnClicl()
+    {
+        AudioManager.Play(AudioClipName.Button1);
+        SceneManager.LoadScene("Settings");
+    }
+
+    /// <summary>
+    /// Handles on-click event of credits button: goes to credits page.
+    /// </summary>
+    public void HandleCreditsButtonOnClick()
+    {
+        AudioManager.Play(AudioClipName.Button1);
+        SceneManager.LoadScene("Credits");
     }
 }
