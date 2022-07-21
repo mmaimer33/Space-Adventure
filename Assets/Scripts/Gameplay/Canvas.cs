@@ -48,6 +48,8 @@ public class Canvas : MonoBehaviour
         // Initialize score
         score = 0;
         scoreText.text = scorePrefix + score.ToString();
+        ShipMover shipMover = GameObject.FindGameObjectWithTag("Ship").GetComponent<ShipMover>();
+        shipMover.AddGameOverEventListener(GameOverEventListener);
     }
 
     /// <summary>
@@ -66,9 +68,10 @@ public class Canvas : MonoBehaviour
     /// <summary>
     /// Updates the score.
     /// </summary>
-    /// <param name="scoreValue">New score.</param>
+    /// <param name="scoreValue">New score value</param>
     public void UpdateScore(int scoreValue)
     {
+        score = scoreValue;
         scoreText.text = scorePrefix + scoreValue.ToString();
         if (score != 0 && score % 500 == 0)
         {
@@ -79,13 +82,26 @@ public class Canvas : MonoBehaviour
     /// <summary>
     /// Updates the fuel slider value.
     /// </summary>
-    /// <param name="fuelValue">New fuel value,</param>
+    /// <param name="fuelValue">New fuel value</param>
     public void UpdateFuel(float fuelValue)
     {
         fuelSlider.value = fuelValue / (float)MaxFuel;
         if (fuelValue == 0)
         {
             AudioManager.Play(AudioClipName.RocketNoFuel);
+        }
+    }
+
+    /// <summary>
+    /// Adds the coins to player's total and checks for highscore.
+    /// </summary>
+    public void GameOverEventListener()
+    {
+        GameManager.Coins += coinsCollected;
+        if (score > GameManager.HighScore)
+        {
+            GameManager.HighScore = score;
+            AudioManager.Play(AudioClipName.NewHighscore);
         }
     }
 

@@ -9,10 +9,6 @@ using TMPro;
 /// </summary>
 public class SettingsMenu : MonoBehaviour
 {
-    // Name support
-    [SerializeField]
-    private TMP_InputField nameInput;
-    private string currentName;
 
     // Background volume support
     [SerializeField]
@@ -37,15 +33,6 @@ public class SettingsMenu : MonoBehaviour
 
     void Start()
     {
-        // Init name
-        currentName = GameManager.Name;
-        if (string.IsNullOrEmpty(currentName))
-        {
-            currentName = "Enter name...";
-        }
-        nameInput.text = currentName;
-        nameInput.onEndEdit.AddListener(HandleNameInputOnEndEdit);
-
         // Init background volume
         backgroundVolumeSlider.value = GameManager.BackgroundVolume;
         backgroundVolumeSlider.onValueChanged.
@@ -63,16 +50,6 @@ public class SettingsMenu : MonoBehaviour
 
         // Init high score text
         highScoreText.text = highScoreTextPrefix + GameManager.HighScore.ToString();
-    }
-
-    /// <summary>
-    /// Handles the on-end-edit event of name input field:
-    ///     Sets the PlayerPrefs name in the game manager.
-    /// </summary>
-    /// <param name="newName">New name.</param>
-    public void HandleNameInputOnEndEdit(string newName)
-    {
-        GameManager.Name = newName;
     }
 
     /// <summary>
@@ -125,6 +102,7 @@ public class SettingsMenu : MonoBehaviour
     {
         AudioManager.Play(AudioClipName.Button1);
         GameManager.SavePrefs();
+        MenuManager.GoToMenu(MenuName.Main);
     }
 
     /// <summary>

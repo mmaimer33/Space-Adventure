@@ -14,19 +14,6 @@ public static class GameManager
     };
 
     /// <summary>
-    /// Gets and sets the name stored in PlayerPrefs.
-    /// WARNING: get can return null or empty string.
-    /// </summary>
-    public static string Name
-    {
-        get { return PlayerPrefs.GetString("Name"); }
-        set
-        {
-            PlayerPrefs.SetString("Name", value);
-        }
-    }
-
-    /// <summary>
     /// Gets and sets the player's Highscore.
     /// </summary>
     public static int HighScore
@@ -38,6 +25,22 @@ public static class GameManager
         }
     }
 
+    /// <summary>
+    /// Gets and sets the number of coins the player has.
+    /// </summary>
+    public static int Coins
+    {
+        get { return PlayerPrefs.GetInt("Coins", 0); }
+        set
+        {
+            PlayerPrefs.SetInt("Coins", value);
+        }
+    }
+
+    /// <summary>
+    /// Gets and sounds the background music sound in PlayerPrefs.
+    /// Gets a default value of 0.5.
+    /// </summary>
     public static float BackgroundVolume
     {
         get { return PlayerPrefs.GetFloat("BackgroundVolume", DefaultVolume); }

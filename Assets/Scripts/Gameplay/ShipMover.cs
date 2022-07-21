@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShipMover : MonoBehaviour
 {
@@ -16,13 +17,12 @@ public class ShipMover : MonoBehaviour
     private Canvas canvas;
 
     // For forward motion
-    [SerializeField]
-    private float InitialSpeed = 5f;
+    private const float InitialSpeed = 5f;
     private float shipSpeed;
 
     // For rotation
-    private Vector3 touchPosition;
-    //private Vector3 mousePosition;
+    //private Vector3 touchPosition;
+    private Vector3 mousePosition;
     private Vector2 direction;
 
     // Score support
@@ -36,6 +36,9 @@ public class ShipMover : MonoBehaviour
 
     // Speed up support
     Timer speedTimer;
+
+    // GameOver event support
+    GameOverEvent gameOverEvent = new GameOverEvent();
 
     #endregion
 
@@ -108,19 +111,19 @@ public class ShipMover : MonoBehaviour
             speedTimer.Run();
         }
 
-        if (Input.touchCount == 1)
-        //if (Input.GetMouseButton(0))
+        //if (Input.touchCount == 1)
+        if (Input.GetMouseButton(0))
         {
             // Gets the input position and makes the ship point that way.
-            touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            //touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-            direction.x = RestrictX(touchPosition.x - transform.position.x);
-            direction.y = touchPosition.y - transform.position.y;
+            //direction.x = RestrictX(touchPosition.x - transform.position.x);
+            //direction.y = touchPosition.y - transform.position.y;
 
-            //mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            //direction.x = RestrictX(mousePosition.x - transform.position.x);
-            //direction.y = mousePosition.y - transform.position.y;
+            direction.x = RestrictX(mousePosition.x - transform.position.x);
+            direction.y = mousePosition.y - transform.position.y;
 
             transform.right = direction;
 
@@ -130,8 +133,8 @@ public class ShipMover : MonoBehaviour
                 rocketSound.Play();
             }
         }
-        else if (Input.touchCount == 2 && Input.GetTouch(1).phase == TouchPhase.Began)
-        //else if (Input.GetMouseButtonDown(1))
+        //else if (Input.touchCount == 2 && Input.GetTouch(1).phase == TouchPhase.Began)
+        else if (Input.GetMouseButtonDown(1))
         {
             // Open the pause menu if not already paused
             if (!paused)
@@ -228,6 +231,24 @@ public class ShipMover : MonoBehaviour
         {
             return fuel;
         }
+    }
+
+    /// <summary>
+    /// Adds a listener to the game over event.
+    /// </summary>
+    /// <param name="listener">Listener delegate to be added.</param>
+    public void AddGameOverEventListener(UnityAction listener)
+    {
+        gameOverEvent.AddListener(listener);
+    }
+
+    /// <summary>
+    /// Invokes the GameOver event.
+    /// </summary>
+    public void GameOver()
+    {
+        gameOverEvent.Invoke();
+        MenuManager.GoToMenu(MenuName.GameOver);
     }
 
     #endregion

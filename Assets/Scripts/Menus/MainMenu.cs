@@ -2,12 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 /// <summary>
 /// Listens for and handles on-click events from Main Menu buttons.
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField]
+    TextMeshProUGUI coinsCountText;
+
+    void Start()
+    {
+        coinsCountText.text = GameManager.Coins.ToString();
+    }
+
     /// <summary>
     /// Handles on-click event of play button: starts the game.
     /// </summary>
