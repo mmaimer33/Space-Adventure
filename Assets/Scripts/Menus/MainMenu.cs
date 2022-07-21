@@ -38,10 +38,19 @@ public class MainMenu : MonoBehaviour
     /// <summary>
     /// Handles on-click event of settings button: goes to settings page.
     /// </summary>
-    public void HandleSettingsButtonOnClicl()
+    public void HandleSettingsButtonOnClick()
     {
         AudioManager.Play(AudioClipName.Button1);
         MenuManager.GoToMenu(MenuName.Settings);
+    }
+
+    /// <summary>
+    /// Handles on-click event of tutorial button: goes to tutorial page.
+    /// </summary>
+    public void HandleTutorialButtonOnClick()
+    {
+        AudioManager.Play(AudioClipName.Button1);
+        MenuManager.GoToMenu(MenuName.Tutorial);
     }
 
     /// <summary>

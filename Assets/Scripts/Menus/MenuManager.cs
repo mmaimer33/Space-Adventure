@@ -30,6 +30,10 @@ public static class MenuManager
             case MenuName.Settings:
                 SceneManager.LoadScene("Settings");
                 break;
+
+            case MenuName.Tutorial:
+                SceneManager.LoadScene("Tutorial");
+                break;
         }
     }
 }

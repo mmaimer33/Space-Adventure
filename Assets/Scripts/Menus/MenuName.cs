@@ -10,5 +10,6 @@ public enum MenuName
     Main,
     Pause,
     GameOver,
-    Settings
+    Settings,
+    Tutorial
 }
