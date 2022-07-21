@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e8ff29f5feb54f92af5551ef7387331
+guid: 4de3ab106e1b9435ebb1e46a2db5ffac
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,12 +128,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CreditsButton_0
+      name: CrossButton_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 255
+        width: 256
         height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -142,19 +142,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4948f035aafde4c83acde9261d0c7089
-      internalID: 1909239840
+      spriteID: 37604df7bee3d484ead69e140362f19d
+      internalID: -994431350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CreditsButton_1
+      name: CrossButton_1
       rect:
         serializedVersion: 2
-        x: 255
+        x: 256
         y: 0
-        width: 257
+        width: 256
         height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -163,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d50eff42112984ce5a02f9dd60eaceb5
-      internalID: 614984271
+      spriteID: ebbf22ca4f9af43f4b21a75078403682
+      internalID: 10137217
       vertices: []
       indices: 
       edges: []
@@ -180,8 +180,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CreditsButton_0: 1909239840
-      CreditsButton_1: 614984271
+      CrossButton_1: 10137217
+      CrossButton_0: -994431350
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

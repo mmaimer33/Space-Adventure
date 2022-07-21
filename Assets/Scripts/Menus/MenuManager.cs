@@ -26,6 +26,10 @@ public static class MenuManager
 
                 Object.Instantiate(Resources.Load("GameOverMenu"));
                 break;
+
+            case MenuName.Settings:
+                SceneManager.LoadScene("Settings");
+                break;
         }
     }
 }

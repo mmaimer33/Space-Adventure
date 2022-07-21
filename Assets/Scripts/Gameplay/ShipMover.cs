@@ -11,8 +11,8 @@ public class ShipMover : MonoBehaviour
     // Fuel support
     private const int MaxFuel = 200;
     private const int MinFuel = 0;
-    private int fuel;
-    private int increaseFuelByAmount = 1;
+    private float fuel;
+    private float fuelRefillRate;
     private Canvas canvas;
 
     // For forward motion
@@ -21,8 +21,8 @@ public class ShipMover : MonoBehaviour
     private float shipSpeed;
 
     // For rotation
-    //private Vector3 touchPosition;
-    private Vector3 mousePosition;
+    private Vector3 touchPosition;
+    //private Vector3 mousePosition;
     private Vector2 direction;
 
     // Score support
@@ -33,6 +33,9 @@ public class ShipMover : MonoBehaviour
 
     // Audio support
     private AudioSource rocketSound;
+
+    // Speed up support
+    Timer speedTimer;
 
     #endregion
 
@@ -50,7 +53,7 @@ public class ShipMover : MonoBehaviour
     /// The amount of fuel the ship has, between 0 and 20;
     /// </summary>
     /// <value>The amount to set the fuel to.</value>
-    public int Fuel
+    public float Fuel
     {
         get { return fuel; }
         set { fuel = RestrictFuel(value); }
@@ -73,6 +76,7 @@ public class ShipMover : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         shipSpeed = InitialSpeed;
         rocketSound = GetComponent<AudioSource>();
+        fuelRefillRate = GameManager.FuelRefillRate;
     }
 
     /// <summary>
@@ -88,24 +92,35 @@ public class ShipMover : MonoBehaviour
         score = 0;
 
         paused = false;
+
+        speedTimer = gameObject.AddComponent<Timer>();
+        speedTimer.Duration = 30;
+        speedTimer.Run();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.touchCount == 1)
-        if (Input.GetMouseButton(0))
+        // Speed up ship if required
+        if (speedTimer.Finished)
+        {
+            shipSpeed += 2f;
+            speedTimer.Run();
+        }
+
+        if (Input.touchCount == 1)
+        //if (Input.GetMouseButton(0))
         {
             // Gets the input position and makes the ship point that way.
-            //touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-            //direction.x = RestrictX(touchPosition.x - transform.position.x);
-            //direction.y = touchPosition.y - transform.position.y;
+            direction.x = RestrictX(touchPosition.x - transform.position.x);
+            direction.y = touchPosition.y - transform.position.y;
 
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            direction.x = RestrictX(mousePosition.x - transform.position.x);
-            direction.y = mousePosition.y - transform.position.y;
+            //direction.x = RestrictX(mousePosition.x - transform.position.x);
+            //direction.y = mousePosition.y - transform.position.y;
 
             transform.right = direction;
 
@@ -115,8 +130,8 @@ public class ShipMover : MonoBehaviour
                 rocketSound.Play();
             }
         }
-        //else if (Input.touchCount == 2 && Input.GetTouch(1).phase == TouchPhase.Began)
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.touchCount == 2 && Input.GetTouch(1).phase == TouchPhase.Began)
+        //else if (Input.GetMouseButtonDown(1))
         {
             // Open the pause menu if not already paused
             if (!paused)
@@ -152,7 +167,7 @@ public class ShipMover : MonoBehaviour
         }
         else
         {
-            fuel += increaseFuelByAmount;
+            fuel += fuelRefillRate;
             fuel = RestrictFuel(fuel);
         }
 
@@ -199,7 +214,7 @@ public class ShipMover : MonoBehaviour
     /// </summary>
     /// <param name="fuel">Original fuel value.</param>
     /// <returns>Restricted fuel value.</returns>
-    private int RestrictFuel(int fuel)
+    private float RestrictFuel(float fuel)
     {
         if (fuel > MaxFuel)
         {

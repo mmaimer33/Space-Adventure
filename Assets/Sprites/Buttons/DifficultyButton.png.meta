@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e8ff29f5feb54f92af5551ef7387331
+guid: 8f4791f83970940f296fb6f866c76ce3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,12 +128,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CreditsButton_0
+      name: DifficultyButton_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 21
         y: 0
-        width: 255
+        width: 454
         height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -142,19 +142,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4948f035aafde4c83acde9261d0c7089
-      internalID: 1909239840
+      spriteID: a1c74a2f964974e2f9aa36dd8ed155de
+      internalID: -502422136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CreditsButton_1
+      name: DifficultyButton_1
       rect:
         serializedVersion: 2
-        x: 255
+        x: 475
         y: 0
-        width: 257
+        width: 451
         height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -163,8 +163,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d50eff42112984ce5a02f9dd60eaceb5
-      internalID: 614984271
+      spriteID: 3502cc5fcb4e147c696342b93d5a3650
+      internalID: 1402511766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DifficultyButton_2
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 0
+        width: 446
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90aa86b42325c4e3ea36f45345d0436b
+      internalID: 1682990437
       vertices: []
       indices: 
       edges: []
@@ -180,8 +201,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CreditsButton_0: 1909239840
-      CreditsButton_1: 614984271
+      DifficultyButton_1: 1402511766
+      DifficultyButton_2: 1682990437
+      DifficultyButton_0: -502422136
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

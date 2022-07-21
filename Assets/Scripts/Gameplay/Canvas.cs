@@ -80,9 +80,9 @@ public class Canvas : MonoBehaviour
     /// Updates the fuel slider value.
     /// </summary>
     /// <param name="fuelValue">New fuel value,</param>
-    public void UpdateFuel(int fuelValue)
+    public void UpdateFuel(float fuelValue)
     {
-        fuelSlider.value = (float)fuelValue / (float)MaxFuel;
+        fuelSlider.value = fuelValue / (float)MaxFuel;
         if (fuelValue == 0)
         {
             AudioManager.Play(AudioClipName.RocketNoFuel);

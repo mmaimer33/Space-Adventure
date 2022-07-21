@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e8ff29f5feb54f92af5551ef7387331
+guid: 53e416c1bd9d8434393e728bef28561d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,12 +128,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CreditsButton_0
+      name: SettingsButton_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 255
+        width: 250
         height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -142,19 +142,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4948f035aafde4c83acde9261d0c7089
-      internalID: 1909239840
+      spriteID: 571078614d781497287fb5f2349caf0f
+      internalID: -1547637308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CreditsButton_1
+      name: SettingsButton_1
       rect:
         serializedVersion: 2
-        x: 255
+        x: 250
         y: 0
-        width: 257
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -163,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d50eff42112984ce5a02f9dd60eaceb5
-      internalID: 614984271
+      spriteID: 13af2441bd84c4be091b5b8702f217bd
+      internalID: -205686202
       vertices: []
       indices: 
       edges: []
@@ -180,8 +180,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CreditsButton_0: 1909239840
-      CreditsButton_1: 614984271
+      SettingsButton_0: -1547637308
+      SettingsButton_1: -205686202
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
