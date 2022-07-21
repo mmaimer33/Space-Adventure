@@ -10,6 +10,7 @@ public class GameOverMenu : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0;
+        AudioManager.Play(AudioClipName.GameOver);
     }
 
     /// <summary>
@@ -17,6 +18,7 @@ public class GameOverMenu : MonoBehaviour
     /// </summary>
     public void HandleHomeButtonOnClick()
     {
+        AudioManager.Play(AudioClipName.Button1);
         Time.timeScale = 1;
         Destroy(gameObject);
         MenuManager.GoToMenu(MenuName.Main);
