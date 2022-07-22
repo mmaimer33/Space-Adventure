@@ -23,8 +23,8 @@ public class ShipMover : MonoBehaviour
     private float shipSpeed;
 
     // For rotation
-    //private Vector3 touchPosition;
-    private Vector3 mousePosition;
+    private Vector3 touchPosition;
+    //private Vector3 mousePosition;
     private Vector2 direction;
 
     // Score support
@@ -116,19 +116,19 @@ public class ShipMover : MonoBehaviour
             fuelTimer.Run();
         }
 
-        //if (Input.touchCount == 1)
-        if (Input.GetMouseButton(0))
+        if (Input.touchCount == 1)
+        //if (Input.GetMouseButton(0))
         {
             // Gets the input position and makes the ship point that way.
-            //touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-            //direction.x = RestrictX(touchPosition.x - transform.position.x);
-            //direction.y = touchPosition.y - transform.position.y;
+            direction.x = RestrictX(touchPosition.x - transform.position.x);
+            direction.y = touchPosition.y - transform.position.y;
 
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            direction.x = RestrictX(mousePosition.x - transform.position.x);
-            direction.y = mousePosition.y - transform.position.y;
+            //direction.x = RestrictX(mousePosition.x - transform.position.x);
+            //direction.y = mousePosition.y - transform.position.y;
 
             transform.right = direction;
 
@@ -138,8 +138,8 @@ public class ShipMover : MonoBehaviour
                 rocketSound.Play();
             }
         }
-        //else if (Input.touchCount == 2 && Input.GetTouch(1).phase == TouchPhase.Began)
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.touchCount == 2 && Input.GetTouch(1).phase == TouchPhase.Began)
+        //else if (Input.GetMouseButtonDown(1))
         {
             // Open the pause menu if not already paused
             if (!paused)
