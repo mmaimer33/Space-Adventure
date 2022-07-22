@@ -9,5 +9,7 @@ public enum MenuName
 {
     Main,
     Pause,
-    GameOver
+    GameOver,
+    Settings,
+    Tutorial
 }

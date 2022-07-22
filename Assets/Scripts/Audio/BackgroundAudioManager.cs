@@ -54,9 +54,22 @@ public static class BackgroundAudioManager
         initialized = true;
     }
 
+    /// <summary>
+    /// Plays the given background audio clip.
+    /// </summary>
+    /// <param name="name">BackgroundAudioClip (enum) to play.</param>
     public static void Play(BackgroundAudioClipName name)
     {
         audioSource.PlayOneShot(audioClips[name]);
+    }
+
+    /// <summary>
+    /// Changes the volume of the background audio.
+    /// </summary>
+    /// <param name="volume">New volume.</param>
+    public static void ChangeVolume(float volume)
+    {
+        audioSource.volume = volume;
     }
 
     #endregion

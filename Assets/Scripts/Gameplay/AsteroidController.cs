@@ -57,7 +57,7 @@ public class AsteroidController : MonoBehaviour
     {
         if (collision.name == "Ship")
         {
-            MenuManager.GoToMenu(MenuName.GameOver);
+            collision.GetComponent<ShipMover>().GameOver();
         }
     }
 
