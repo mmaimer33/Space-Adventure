@@ -107,6 +107,15 @@ public static class GameManager
         }
     }
 
+    public static int ShipSkinIndex
+    {
+        get { return PlayerPrefs.GetInt("ShipSkinIndex", 0); }
+        set
+        {
+            PlayerPrefs.SetInt("ShipSkinIndex", value);
+        }
+    }
+
     /// <summary>
     /// Saves PlayerPrefs.
     /// </summary>

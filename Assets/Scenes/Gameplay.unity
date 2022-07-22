@@ -813,8 +813,6 @@ MonoBehaviour:
   - {fileID: 1805325644751623760, guid: ddaf46647d7fb4c0c9d7747b989cfef8, type: 3}
   - {fileID: 2783953558614818552, guid: de468a064e8de4eae807b75e12c9af36, type: 3}
   ship: {fileID: 822045073}
-  frequency: 1
-  distanceFromShip: 20
 --- !u!1 &753255315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,7 +1048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bda110f0169447a1ac8d7200e36d764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialSpeed: 5
+  shipSkinManager: {fileID: 11400000, guid: e33213b8b6ea94caf87cdbf4533d65eb, type: 2}
 --- !u!82 &822045079
 AudioSource:
   m_ObjectHideFlags: 0
