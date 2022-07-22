@@ -7,6 +7,8 @@ public class ShipMover : MonoBehaviour
 {
     #region Fields
     // For the ship
+    [SerializeField]
+    private ShipSkinManager shipSkinManager;
     private Rigidbody2D rb;
 
     // Fuel support
@@ -87,6 +89,9 @@ public class ShipMover : MonoBehaviour
     /// </summary>
     void Start()
     {
+        // Set skin
+        GetComponent<SpriteRenderer>().sprite = shipSkinManager.GetSelectedShipSkin().sprite;
+
         canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
 
         rb.AddForce(new Vector2(shipSpeed, 0), ForceMode2D.Impulse);

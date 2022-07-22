@@ -54,6 +54,15 @@ public class MainMenu : MonoBehaviour
     }
 
     /// <summary>
+    /// Handles on-click event of shop button: goes to shop page.
+    /// </summary>
+    public void HandleShopButtonOnClick()
+    {
+        AudioManager.Play(AudioClipName.Button1);
+        MenuManager.GoToMenu(MenuName.Shop);
+    }
+
+    /// <summary>
     /// Handles on-click event of credits button: goes to credits page.
     /// </summary>
     //public void HandleCreditsButtonOnClick()

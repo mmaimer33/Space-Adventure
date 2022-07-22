@@ -8,8 +8,9 @@ using UnityEngine;
 public enum MenuName
 {
     Main,
-    Pause,
     GameOver,
     Settings,
-    Tutorial
+    Shop,
+    Tutorial,
+    Pause
 }
