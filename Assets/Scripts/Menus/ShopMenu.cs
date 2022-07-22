@@ -25,6 +25,7 @@ public class ShopMenu : MonoBehaviour
     /// </summary>
     public void HandleHomeButtonOnClick()
     {
+        GameManager.SavePrefs();
         AudioManager.Play(AudioClipName.Button1);
         MenuManager.GoToMenu(MenuName.Main);
     }

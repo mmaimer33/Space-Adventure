@@ -51,6 +51,10 @@ public class ShipSkinManager : ScriptableObject
     /// <returns>true or false as above</returns>
     public bool IsUnlocked(int shipSkinIndex)
     {
+        if (shipSkinIndex == 0)
+        {
+            return true;
+        }
         return PlayerPrefs.GetInt(Prefix + shipSkinIndex, 0) == 1;
     }
 }

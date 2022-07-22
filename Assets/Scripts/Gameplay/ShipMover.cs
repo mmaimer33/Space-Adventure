@@ -102,7 +102,7 @@ public class ShipMover : MonoBehaviour
         paused = false;
 
         speedTimer = gameObject.AddComponent<Timer>();
-        speedTimer.Duration = 30;
+        speedTimer.Duration = 40;
         speedTimer.Run();
     }
 
@@ -112,7 +112,7 @@ public class ShipMover : MonoBehaviour
         // Speed up ship if required
         if (speedTimer.Finished)
         {
-            shipSpeed += 2f;
+            shipSpeed += 1f;
             speedTimer.Run();
         }
 
