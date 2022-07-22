@@ -36,8 +36,8 @@ public class ShipMover : MonoBehaviour
     // Audio support
     private AudioSource rocketSound;
 
-    // Speed up support
-    Timer speedTimer;
+    // FRR slow down support
+    Timer fuelTimer;
 
     // GameOver event support
     GameOverEvent gameOverEvent = new GameOverEvent();
@@ -101,19 +101,19 @@ public class ShipMover : MonoBehaviour
 
         paused = false;
 
-        speedTimer = gameObject.AddComponent<Timer>();
-        speedTimer.Duration = 40;
-        speedTimer.Run();
+        fuelTimer = gameObject.AddComponent<Timer>();
+        fuelTimer.Duration = 40;
+        fuelTimer.Run();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Speed up ship if required
-        if (speedTimer.Finished)
+        // Slow down fuel refill rate.
+        if (fuelTimer.Finished)
         {
-            shipSpeed += 1f;
-            speedTimer.Run();
+            fuelRefillRate *= 0.95f;
+            fuelTimer.Run();
         }
 
         //if (Input.touchCount == 1)
