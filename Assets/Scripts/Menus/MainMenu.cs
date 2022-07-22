@@ -49,7 +49,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void HandleTutorialButtonOnClick()
     {
-        AudioManager.Play(AudioClipName.Button1);
+        AudioManager.Play(AudioClipName.Button2);
         MenuManager.GoToMenu(MenuName.Tutorial);
     }
 
