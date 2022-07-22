@@ -9,6 +9,7 @@ public class BackgroundAudioSource : MonoBehaviour
         if (!BackgroundAudioManager.Initialized)
         {
             AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.volume = GameManager.BackgroundVolume;
             BackgroundAudioManager.Initialize(audioSource);
             DontDestroyOnLoad(gameObject);
         }

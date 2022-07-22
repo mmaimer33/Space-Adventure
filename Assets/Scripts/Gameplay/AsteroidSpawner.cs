@@ -12,13 +12,11 @@ public class AsteroidSpawner : MonoBehaviour
     [SerializeField]
     private GameObject ship;
 
-    // TODO: turn to constants
-    [SerializeField]
+    // Spawning support
     private float frequency;
-    [SerializeField]
-    private float distanceFromShip;
+    private const float distanceFromShip = 20;
 
-    // location support
+    // Location support
     private float minX;
     private float minY;
     private float maxX;
@@ -37,6 +35,7 @@ public class AsteroidSpawner : MonoBehaviour
         location = new Vector3();
         location.z = 0;
 
+        frequency = GameManager.AsteroidSpawnFrequency;
         InvokeRepeating("SpawnAsteroid", 0.5f, frequency);
     }
 

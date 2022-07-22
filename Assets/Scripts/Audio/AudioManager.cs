@@ -52,9 +52,22 @@ public static class AudioManager
         initialized = true;
     }
 
+    /// <summary>
+    /// Plays the given audio clip.
+    /// </summary>
+    /// <param name="name">BackgroundAudioClip (enum) to play.</param>
     public static void Play(AudioClipName name)
     {
         audioSource.PlayOneShot(audioClips[name]);
+    }
+
+    /// <summary>
+    /// Changes the volume of the sound effects.
+    /// </summary>
+    /// <param name="volume">New volume.</param>
+    public static void ChangeVolume(float volume)
+    {
+        audioSource.volume = volume;
     }
 
     #endregion
