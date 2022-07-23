@@ -7,6 +7,8 @@ public class ShipMover : MonoBehaviour
 {
     #region Fields
     // For the ship
+    [SerializeField]
+    private ShipSkinManager shipSkinManager;
     private Rigidbody2D rb;
 
     // Fuel support
@@ -21,8 +23,8 @@ public class ShipMover : MonoBehaviour
     private float shipSpeed;
 
     // For rotation
-    //private Vector3 touchPosition;
-    private Vector3 mousePosition;
+    private Vector3 touchPosition;
+    //private Vector3 mousePosition;
     private Vector2 direction;
 
     // Score support
@@ -34,8 +36,8 @@ public class ShipMover : MonoBehaviour
     // Audio support
     private AudioSource rocketSound;
 
-    // Speed up support
-    Timer speedTimer;
+    // FRR slow down support
+    Timer fuelTimer;
 
     // GameOver event support
     GameOverEvent gameOverEvent = new GameOverEvent();
@@ -87,6 +89,9 @@ public class ShipMover : MonoBehaviour
     /// </summary>
     void Start()
     {
+        // Set skin
+        GetComponent<SpriteRenderer>().sprite = shipSkinManager.GetSelectedShipSkin().sprite;
+
         canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
 
         rb.AddForce(new Vector2(shipSpeed, 0), ForceMode2D.Impulse);
@@ -96,34 +101,34 @@ public class ShipMover : MonoBehaviour
 
         paused = false;
 
-        speedTimer = gameObject.AddComponent<Timer>();
-        speedTimer.Duration = 30;
-        speedTimer.Run();
+        fuelTimer = gameObject.AddComponent<Timer>();
+        fuelTimer.Duration = 40;
+        fuelTimer.Run();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Speed up ship if required
-        if (speedTimer.Finished)
+        // Slow down fuel refill rate.
+        if (fuelTimer.Finished)
         {
-            shipSpeed += 2f;
-            speedTimer.Run();
+            fuelRefillRate *= 0.95f;
+            fuelTimer.Run();
         }
 
-        //if (Input.touchCount == 1)
-        if (Input.GetMouseButton(0))
+        if (Input.touchCount == 1)
+        //if (Input.GetMouseButton(0))
         {
             // Gets the input position and makes the ship point that way.
-            //touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-            //direction.x = RestrictX(touchPosition.x - transform.position.x);
-            //direction.y = touchPosition.y - transform.position.y;
+            direction.x = RestrictX(touchPosition.x - transform.position.x);
+            direction.y = touchPosition.y - transform.position.y;
 
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            direction.x = RestrictX(mousePosition.x - transform.position.x);
-            direction.y = mousePosition.y - transform.position.y;
+            //direction.x = RestrictX(mousePosition.x - transform.position.x);
+            //direction.y = mousePosition.y - transform.position.y;
 
             transform.right = direction;
 
@@ -133,8 +138,8 @@ public class ShipMover : MonoBehaviour
                 rocketSound.Play();
             }
         }
-        //else if (Input.touchCount == 2 && Input.GetTouch(1).phase == TouchPhase.Began)
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.touchCount == 2 && Input.GetTouch(1).phase == TouchPhase.Began)
+        //else if (Input.GetMouseButtonDown(1))
         {
             // Open the pause menu if not already paused
             if (!paused)

@@ -49,8 +49,17 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void HandleTutorialButtonOnClick()
     {
-        AudioManager.Play(AudioClipName.Button1);
+        AudioManager.Play(AudioClipName.Button2);
         MenuManager.GoToMenu(MenuName.Tutorial);
+    }
+
+    /// <summary>
+    /// Handles on-click event of shop button: goes to shop page.
+    /// </summary>
+    public void HandleShopButtonOnClick()
+    {
+        AudioManager.Play(AudioClipName.Button1);
+        MenuManager.GoToMenu(MenuName.Shop);
     }
 
     /// <summary>

@@ -17,11 +17,6 @@ public static class MenuManager
                 SceneManager.LoadScene("Home");
                 break;
 
-            case MenuName.Pause:
-
-                Object.Instantiate(Resources.Load("PauseMenu"));
-                break;
-
             case MenuName.GameOver:
 
                 Object.Instantiate(Resources.Load("GameOverMenu"));
@@ -31,8 +26,17 @@ public static class MenuManager
                 SceneManager.LoadScene("Settings");
                 break;
 
+            case MenuName.Shop:
+                SceneManager.LoadScene("Shop");
+                break;
+
             case MenuName.Tutorial:
                 SceneManager.LoadScene("Tutorial");
+                break;
+
+            case MenuName.Pause:
+
+                Object.Instantiate(Resources.Load("PauseMenu"));
                 break;
         }
     }
