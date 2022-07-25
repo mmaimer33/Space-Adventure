@@ -12,8 +12,8 @@ public class ShipMover : MonoBehaviour
     private Rigidbody2D rb;
 
     // Fuel support
-    private const int MaxFuel = 300;
-    private const int MinFuel = 0;
+    private float maxFuel;
+    private const float MinFuel = 0f;
     private float fuel;
     private float fuelRefillRate;
     private Canvas canvas;
@@ -85,6 +85,7 @@ public class ShipMover : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         shipSpeed = InitialSpeed;
         rocketSound = GetComponent<AudioSource>();
+        maxFuel = GameManager.MaxFuel;
         fuelRefillRate = GameManager.FuelRefillRate;
     }
 
@@ -100,7 +101,7 @@ public class ShipMover : MonoBehaviour
 
         rb.AddForce(new Vector2(shipSpeed, 0), ForceMode2D.Impulse);
         direction = new Vector2();
-        fuel = MaxFuel;
+        fuel = maxFuel;
         score = 0;
 
         paused = false;
@@ -121,13 +122,12 @@ public class ShipMover : MonoBehaviour
         if (fuelTimer.Finished)
         {
             fuelRefillRate *= 0.95f;
-            fuelTimer.Run();
-
             // Try spawning FuelCan
             if (Random.value <= fuelCanSpawnChance)
             {
                 fuelCanSpawner.SpawnFuelCan();
             }
+            fuelTimer.Run();
         }
 
         //if (Input.touchCount == 1)
@@ -246,9 +246,9 @@ public class ShipMover : MonoBehaviour
     /// <returns>Restricted fuel value.</returns>
     private float RestrictFuel(float fuel)
     {
-        if (fuel > MaxFuel)
+        if (fuel > maxFuel)
         {
-            return MaxFuel;
+            return maxFuel;
         }
         else if (fuel < MinFuel)
         {
