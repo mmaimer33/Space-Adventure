@@ -116,6 +116,15 @@ public static class GameManager
         }
     }
 
+    public static float FuelCanFrequency
+    {
+        get { return PlayerPrefs.GetFloat("FuelCanFrequency", 50); }
+        set
+        {
+            PlayerPrefs.SetFloat("FuelCanFrequency", value);
+        }
+    }
+
     /// <summary>
     /// Saves PlayerPrefs.
     /// </summary>

@@ -48,6 +48,7 @@ public static class AudioManager
         audioClips.Add(AudioClipName.Rocket, Resources.Load<AudioClip>("Rocket"));
         audioClips.Add(AudioClipName.RocketNoFuel, Resources.Load<AudioClip>("RocketNoFuel"));
         audioClips.Add(AudioClipName.ScoreMarker, Resources.Load<AudioClip>("ScoreMarker"));
+        audioClips.Add(AudioClipName.FuelCanPickup, Resources.Load<AudioClip>("FuelCanPickup"));
 
         initialized = true;
     }

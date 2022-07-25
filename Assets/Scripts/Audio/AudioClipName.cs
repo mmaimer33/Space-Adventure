@@ -16,5 +16,6 @@ public enum AudioClipName
     NewHighscore,
     Rocket,
     RocketNoFuel,
-    ScoreMarker
+    ScoreMarker,
+    FuelCanPickup
 }

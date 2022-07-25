@@ -636,6 +636,7 @@ GameObject:
   - component: {fileID: 519420036}
   - component: {fileID: 519420038}
   - component: {fileID: 519420037}
+  - component: {fileID: 519420039}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -812,6 +813,20 @@ MonoBehaviour:
   - {fileID: 5730447656831325986, guid: fd24b2cfeae814d6685810ca1c1732f2, type: 3}
   - {fileID: 1805325644751623760, guid: ddaf46647d7fb4c0c9d7747b989cfef8, type: 3}
   - {fileID: 2783953558614818552, guid: de468a064e8de4eae807b75e12c9af36, type: 3}
+  ship: {fileID: 822045073}
+--- !u!114 &519420039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e2ad0e477a1b4d9e8deb78715150e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuelCan: {fileID: 6028922073167908991, guid: 7355e3ef348134b62a6b70216e3153fd, type: 3}
   ship: {fileID: 822045073}
 --- !u!1 &753255315
 GameObject:

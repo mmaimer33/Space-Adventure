@@ -17,7 +17,7 @@ public class Canvas : MonoBehaviour
     // Fuel Bar
     [SerializeField]
     Slider fuelSlider;
-    private const int MaxFuel = 200;
+    private const int MaxFuel = 300;
 
     // Score Text
     [SerializeField]
