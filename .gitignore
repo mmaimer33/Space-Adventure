@@ -73,3 +73,7 @@ crashlytics-build.properties
 
 # Added by team
 .DS_Store
+
+# Ignore testing
+/Assets/[Tt]ests
+/Assets/Tests.meta
