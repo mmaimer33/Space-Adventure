@@ -40,10 +40,6 @@ public class ShipMover : MonoBehaviour
     // FRR slow down support
     Timer fuelTimer;
 
-    // Fuel can support
-    private FuelCanSpawner fuelCanSpawner;
-    private float fuelCanSpawnChance;
-
     // GameOver event support
     GameOverEvent gameOverEvent = new GameOverEvent();
 
@@ -111,10 +107,6 @@ public class ShipMover : MonoBehaviour
         fuelTimer = gameObject.AddComponent<Timer>();
         fuelTimer.Duration = 30;
         fuelTimer.Run();
-
-        // Init fuel can spawning.
-        fuelCanSpawner = GetComponent<FuelCanSpawner>();
-        fuelCanSpawnChance = GameManager.FuelCanSpawnChance;
     }
 
     // Update is called once per frame
@@ -124,22 +116,16 @@ public class ShipMover : MonoBehaviour
         if (fuelTimer.Finished)
         {
             fuelRefillRate *= 0.95f;
-            // Try spawning FuelCan
-            if (Random.value <= fuelCanSpawnChance)
-            {
-                fuelCanSpawner.SpawnFuelCan();
-            }
-            fuelTimer.Run();
         }
 
         if (Input.touchCount == 1)
-        if (Input.GetMouseButton(0))
+        //if (Input.GetMouseButton(0))
         {
             // Gets the input position and makes the ship point that way.
             touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-                direction.x = RestrictX(touchPosition.x - transform.position.x);
-                direction.y = touchPosition.y - midY;
+            direction.x = RestrictX(touchPosition.x - transform.position.x);
+            direction.y = touchPosition.y - midY;
 
             //mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
