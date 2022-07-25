@@ -26,6 +26,7 @@ public class ShipMover : MonoBehaviour
     private Vector3 touchPosition;
     //private Vector3 mousePosition;
     private Vector2 direction;
+    private float midY;
 
     // Score support
     private int score;
@@ -96,8 +97,9 @@ public class ShipMover : MonoBehaviour
     {
         // Set skin
         GetComponent<SpriteRenderer>().sprite = shipSkinManager.GetSelectedShipSkin().sprite;
-
         canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
+
+        midY = ScreenUtils.ScreenBottom + ((ScreenUtils.ScreenTop - ScreenUtils.ScreenBottom) / 2);
 
         rb.AddForce(new Vector2(shipSpeed, 0), ForceMode2D.Impulse);
         direction = new Vector2();
@@ -131,18 +133,18 @@ public class ShipMover : MonoBehaviour
         }
 
         if (Input.touchCount == 1)
-        //if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             // Gets the input position and makes the ship point that way.
             touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-            direction.x = RestrictX(touchPosition.x - transform.position.x);
-            direction.y = touchPosition.y - transform.position.y;
+                direction.x = RestrictX(touchPosition.x - transform.position.x);
+                direction.y = touchPosition.y - midY;
 
             //mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             //direction.x = RestrictX(mousePosition.x - transform.position.x);
-            //direction.y = mousePosition.y - transform.position.y;
+            //direction.y = mousePosition.y - midY;
 
             transform.right = direction;
 
@@ -169,9 +171,9 @@ public class ShipMover : MonoBehaviour
         {
             rocketSound.volume = 0;
             rocketSound.Stop();
-            direction.x = RestrictX(direction.x);
             transform.right = direction;
         }
+        direction.x = RestrictX(direction.x);
     }
 
     // Frame-rate independent update
