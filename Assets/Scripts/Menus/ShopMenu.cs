@@ -39,7 +39,7 @@ public class ShopMenu : MonoBehaviour
         fuelLevelText.text = FuelLevelPrefix + GameManager.FuelLevel.ToString();
         if (currentFuelLevel == 3)
         {
-            fuelLevelButton.gameObject.SetActive(false);
+            fuelLevelCostText.text = "Max";
         }
         else
         {
