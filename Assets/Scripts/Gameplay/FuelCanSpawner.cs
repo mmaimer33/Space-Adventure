@@ -14,7 +14,9 @@ public class FuelCanSpawner : MonoBehaviour
     [SerializeField]
     private GameObject ship;
 
-    private float frequency;
+    private Timer spawnTimer;
+    private float fuelCanSpawnChance;
+
     private float minY;
     private float maxY;
     private Vector3 fuelCanPosition;
@@ -27,15 +29,31 @@ public class FuelCanSpawner : MonoBehaviour
 
     void Start()
     {
+        fuelCanSpawnChance = GameManager.FuelCanSpawnChance;
         minY = ScreenUtils.ScreenBottom + 1;
         maxY = ScreenUtils.ScreenTop - 1;
         fuelCanPosition = new Vector3();
+        spawnTimer = gameObject.AddComponent<Timer>();
+        spawnTimer.Duration = 15;
+        spawnTimer.Run();
+    }
+
+    void Update()
+    {
+        if (spawnTimer.Finished)
+        {
+            if (Random.value <= fuelCanSpawnChance)
+            {
+                SpawnFuelCan();
+            }
+            spawnTimer.Run();
+        }
     }
 
     /// <summary>
     /// Spawns in a fuel can in between the min and max Y values.
     /// </summary>
-    public void SpawnFuelCan()
+    private void SpawnFuelCan()
     {
         fuelCanPosition.x = ship.transform.position.x + DistanceFromShip;
         fuelCanPosition.y = Random.Range(minY, maxY);

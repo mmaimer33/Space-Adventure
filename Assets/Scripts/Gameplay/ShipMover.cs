@@ -26,6 +26,7 @@ public class ShipMover : MonoBehaviour
     private Vector3 touchPosition;
     //private Vector3 mousePosition;
     private Vector2 direction;
+    private float midY;
 
     // Score support
     private int score;
@@ -38,10 +39,6 @@ public class ShipMover : MonoBehaviour
 
     // FRR slow down support
     Timer fuelTimer;
-
-    // Fuel can support
-    private FuelCanSpawner fuelCanSpawner;
-    private float fuelCanSpawnChance;
 
     // GameOver event support
     GameOverEvent gameOverEvent = new GameOverEvent();
@@ -96,8 +93,9 @@ public class ShipMover : MonoBehaviour
     {
         // Set skin
         GetComponent<SpriteRenderer>().sprite = shipSkinManager.GetSelectedShipSkin().sprite;
-
         canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
+
+        midY = ScreenUtils.ScreenBottom + ((ScreenUtils.ScreenTop - ScreenUtils.ScreenBottom) / 2);
 
         rb.AddForce(new Vector2(shipSpeed, 0), ForceMode2D.Impulse);
         direction = new Vector2();
@@ -109,10 +107,6 @@ public class ShipMover : MonoBehaviour
         fuelTimer = gameObject.AddComponent<Timer>();
         fuelTimer.Duration = 30;
         fuelTimer.Run();
-
-        // Init fuel can spawning.
-        fuelCanSpawner = GetComponent<FuelCanSpawner>();
-        fuelCanSpawnChance = GameManager.FuelCanSpawnChance;
     }
 
     // Update is called once per frame
@@ -122,12 +116,6 @@ public class ShipMover : MonoBehaviour
         if (fuelTimer.Finished)
         {
             fuelRefillRate *= 0.95f;
-            // Try spawning FuelCan
-            if (Random.value <= fuelCanSpawnChance)
-            {
-                fuelCanSpawner.SpawnFuelCan();
-            }
-            fuelTimer.Run();
         }
 
         if (Input.touchCount == 1)
@@ -137,12 +125,12 @@ public class ShipMover : MonoBehaviour
             touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
             direction.x = RestrictX(touchPosition.x - transform.position.x);
-            direction.y = touchPosition.y - transform.position.y;
+            direction.y = touchPosition.y - midY;
 
             //mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             //direction.x = RestrictX(mousePosition.x - transform.position.x);
-            //direction.y = mousePosition.y - transform.position.y;
+            //direction.y = mousePosition.y - midY;
 
             transform.right = direction;
 
@@ -169,9 +157,9 @@ public class ShipMover : MonoBehaviour
         {
             rocketSound.volume = 0;
             rocketSound.Stop();
-            direction.x = RestrictX(direction.x);
             transform.right = direction;
         }
+        direction.x = RestrictX(direction.x);
     }
 
     // Frame-rate independent update
