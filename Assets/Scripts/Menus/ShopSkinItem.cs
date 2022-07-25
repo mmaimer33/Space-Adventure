@@ -10,6 +10,8 @@ using TMPro;
 public class ShopSkinItem : MonoBehaviour
 {
     [SerializeField]
+    private GameObject poorText;
+    [SerializeField]
     private ShipSkinManager shipSkinManager;
     [SerializeField]
     private int shipSkinIndex;
@@ -18,11 +20,12 @@ public class ShopSkinItem : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI costText;
 
+    private GameObject canvas;
     private ShipSkin shipSkin;
-    private const string Owned = "Owned";
 
     void Start()
     {
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
         shipSkin = shipSkinManager.shipSkins[shipSkinIndex];
 
         GetComponent<Image>().sprite = shipSkin.sprite;
@@ -30,7 +33,6 @@ public class ShopSkinItem : MonoBehaviour
         if (shipSkinManager.IsUnlocked(shipSkinIndex))
         {
             buyButton.gameObject.SetActive(false);
-            costText.text = Owned;
         }
         else
         {
@@ -64,6 +66,9 @@ public class ShopSkinItem : MonoBehaviour
             buyButton.gameObject.SetActive(false);
             shipSkinManager.SelectShipSkin(shipSkinIndex);
             GameManager.SavePrefs();
+        } else
+        {
+            Instantiate<GameObject>(poorText, canvas.transform);
         }
     }
 }

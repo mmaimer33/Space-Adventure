@@ -29,9 +29,10 @@ public static class GameManager
     private static Dictionary<int, float[]> FuelValues =
         new Dictionary<int, float[]>
         {
-            { 0, new float[2] {250f, 0.6f} },
-            { 1, new float[2] {300f, 0.65f} },
-            { 3, new float[2] {350f, 0.7f} },
+            { 0, new float[2] {250f, 0.7f} },
+            { 1, new float[2] {300f, 0.75f} },
+            { 2, new float[2] {350f, 0.8f} },
+            { 3, new float[2] {400f, 0.85f} }
         };
 
     /// <summary>
