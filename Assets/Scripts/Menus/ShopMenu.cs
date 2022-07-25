@@ -65,11 +65,12 @@ public class ShopMenu : MonoBehaviour
     /// </summary>
     public void HandleFuelLevelButtonOnClick()
     {
+        AudioManager.Play(AudioClipName.Button1);
         if (GameManager.FuelLevel != 3)
         {
             if (GameManager.Coins >= FuelUpgradeCosts[currentFuelLevel + 1])
             {
-                GameManager.Coins = -FuelUpgradeCosts[currentFuelLevel + 1];
+                GameManager.Coins -= FuelUpgradeCosts[currentFuelLevel + 1];
                 GameManager.FuelLevel++;
                 GameManager.SavePrefs();
                 currentFuelLevel++;

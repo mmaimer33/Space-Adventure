@@ -149,6 +149,7 @@ public class ShipMover : MonoBehaviour
             // Play rocket sound
             if (!rocketSound.isPlaying)
             {
+                rocketSound.volume = 1;
                 rocketSound.Play();
             }
         }
@@ -158,6 +159,7 @@ public class ShipMover : MonoBehaviour
             // Open the pause menu if not already paused
             if (!paused)
             {
+                rocketSound.volume = 0;
                 rocketSound.Stop();
                 paused = true;
                 MenuManager.GoToMenu(MenuName.Pause);
@@ -165,6 +167,7 @@ public class ShipMover : MonoBehaviour
         }
         else
         {
+            rocketSound.volume = 0;
             rocketSound.Stop();
             direction.x = RestrictX(direction.x);
             transform.right = direction;
@@ -275,7 +278,10 @@ public class ShipMover : MonoBehaviour
     public void GameOver()
     {
         gameOverEvent.Invoke();
+        rocketSound.volume = 0;
+        rocketSound.Stop();
         MenuManager.GoToMenu(MenuName.GameOver);
+        Destroy(this);
     }
 
     #endregion
