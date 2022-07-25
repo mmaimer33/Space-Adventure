@@ -104,14 +104,4 @@ public class SettingsMenu : MonoBehaviour
         GameManager.SavePrefs();
         MenuManager.GoToMenu(MenuName.Main);
     }
-
-    /// <summary>
-    /// Handles on-click event for cross button:
-    ///     Returns to main menu.
-    /// </summary>
-    public void HandleCrossButtonOnClick()
-    {
-        AudioManager.Play(AudioClipName.Button1);
-        MenuManager.GoToMenu(MenuName.Main);
-    }
 }

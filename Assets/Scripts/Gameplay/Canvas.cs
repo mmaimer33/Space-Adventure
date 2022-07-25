@@ -17,7 +17,7 @@ public class Canvas : MonoBehaviour
     // Fuel Bar
     [SerializeField]
     Slider fuelSlider;
-    private const int MaxFuel = 200;
+    private float MaxFuel;
 
     // Score Text
     [SerializeField]
@@ -41,6 +41,9 @@ public class Canvas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize MaxFuel
+        MaxFuel = GameManager.MaxFuel;
+
         // Initialize coins
         coinsCollected = 0;
         coinsText.text = coinsCollectedPrefix + coinsCollected.ToString();

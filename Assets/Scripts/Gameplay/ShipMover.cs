@@ -12,8 +12,8 @@ public class ShipMover : MonoBehaviour
     private Rigidbody2D rb;
 
     // Fuel support
-    private const int MaxFuel = 200;
-    private const int MinFuel = 0;
+    private float maxFuel;
+    private const float MinFuel = 0f;
     private float fuel;
     private float fuelRefillRate;
     private Canvas canvas;
@@ -38,6 +38,10 @@ public class ShipMover : MonoBehaviour
 
     // FRR slow down support
     Timer fuelTimer;
+
+    // Fuel can support
+    private FuelCanSpawner fuelCanSpawner;
+    private float fuelCanSpawnChance;
 
     // GameOver event support
     GameOverEvent gameOverEvent = new GameOverEvent();
@@ -81,6 +85,7 @@ public class ShipMover : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         shipSpeed = InitialSpeed;
         rocketSound = GetComponent<AudioSource>();
+        maxFuel = GameManager.MaxFuel;
         fuelRefillRate = GameManager.FuelRefillRate;
     }
 
@@ -96,14 +101,18 @@ public class ShipMover : MonoBehaviour
 
         rb.AddForce(new Vector2(shipSpeed, 0), ForceMode2D.Impulse);
         direction = new Vector2();
-        fuel = MaxFuel;
+        fuel = maxFuel;
         score = 0;
 
         paused = false;
 
         fuelTimer = gameObject.AddComponent<Timer>();
-        fuelTimer.Duration = 40;
+        fuelTimer.Duration = 30;
         fuelTimer.Run();
+
+        // Init fuel can spawning.
+        fuelCanSpawner = GetComponent<FuelCanSpawner>();
+        fuelCanSpawnChance = GameManager.FuelCanSpawnChance;
     }
 
     // Update is called once per frame
@@ -113,6 +122,11 @@ public class ShipMover : MonoBehaviour
         if (fuelTimer.Finished)
         {
             fuelRefillRate *= 0.95f;
+            // Try spawning FuelCan
+            if (Random.value <= fuelCanSpawnChance)
+            {
+                fuelCanSpawner.SpawnFuelCan();
+            }
             fuelTimer.Run();
         }
 
@@ -135,6 +149,7 @@ public class ShipMover : MonoBehaviour
             // Play rocket sound
             if (!rocketSound.isPlaying)
             {
+                rocketSound.volume = 1;
                 rocketSound.Play();
             }
         }
@@ -144,6 +159,7 @@ public class ShipMover : MonoBehaviour
             // Open the pause menu if not already paused
             if (!paused)
             {
+                rocketSound.volume = 0;
                 rocketSound.Stop();
                 paused = true;
                 MenuManager.GoToMenu(MenuName.Pause);
@@ -151,6 +167,7 @@ public class ShipMover : MonoBehaviour
         }
         else
         {
+            rocketSound.volume = 0;
             rocketSound.Stop();
             direction.x = RestrictX(direction.x);
             transform.right = direction;
@@ -184,6 +201,14 @@ public class ShipMover : MonoBehaviour
 
         score = RestrictScore((int)transform.position.x);
         canvas.UpdateScore(score);
+    }
+
+    /// <summary>
+    /// Called when ship collects a fuel can: Increases ship's fuel.
+    /// </summary>
+    public void CollectFuelCan()
+    {
+        fuel = RestrictFuel(fuel + 200);
     }
 
     /// <summary>
@@ -224,9 +249,9 @@ public class ShipMover : MonoBehaviour
     /// <returns>Restricted fuel value.</returns>
     private float RestrictFuel(float fuel)
     {
-        if (fuel > MaxFuel)
+        if (fuel > maxFuel)
         {
-            return MaxFuel;
+            return maxFuel;
         }
         else if (fuel < MinFuel)
         {
@@ -253,7 +278,10 @@ public class ShipMover : MonoBehaviour
     public void GameOver()
     {
         gameOverEvent.Invoke();
+        rocketSound.volume = 0;
+        rocketSound.Stop();
         MenuManager.GoToMenu(MenuName.GameOver);
+        Destroy(this);
     }
 
     #endregion

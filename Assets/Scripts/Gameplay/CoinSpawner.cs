@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Spawner script for coins.
+/// </summary>
 public class CoinSpawner : MonoBehaviour
 {
     #region Fields
@@ -43,6 +46,7 @@ public class CoinSpawner : MonoBehaviour
         frequency = 1.25f;
         minY = ScreenUtils.ScreenBottom + 1;
         maxY = ScreenUtils.ScreenTop - 1;
+        coinPosition = new Vector3();
         InvokeRepeating("SpawnCoin", 1, frequency);
     }
 
@@ -52,8 +56,8 @@ public class CoinSpawner : MonoBehaviour
     /// </summary>
     private void SpawnCoin()
     {
-        coinPosition = new Vector3(ship.transform.position.x + DistanceFromShip,
-            RestrictY(Random.Range(minY, maxY)));
+        coinPosition.x = ship.transform.position.x + DistanceFromShip;
+        coinPosition.y = RestrictY(Random.Range(minY, maxY));
         Instantiate<GameObject>(coin, coinPosition, transform.rotation);
         minY = RestrictY(coinPosition.y - HalfSpawnRange);
         maxY = RestrictY(coinPosition.y + HalfSpawnRange);
