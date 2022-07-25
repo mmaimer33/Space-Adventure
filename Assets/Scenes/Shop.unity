@@ -1394,7 +1394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 100, y: -300}
+  m_AnchoredPosition: {x: -250, y: -350}
   m_SizeDelta: {x: 256, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1167719264
@@ -2010,7 +2010,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 435}
+  m_AnchoredPosition: {x: -600, y: 380}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869443513
@@ -2261,6 +2261,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 661325407}
     m_Modifications:
+    - target: {fileID: 490798866650525386, guid: e7f94d15feb67435d93a8a160c11429b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.08597367
+      objectReference: {fileID: 0}
+    - target: {fileID: 490798866650525386, guid: e7f94d15feb67435d93a8a160c11429b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 490798866650525386, guid: e7f94d15feb67435d93a8a160c11429b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5131471
+      objectReference: {fileID: 0}
     - target: {fileID: 490798867190869667, guid: e7f94d15feb67435d93a8a160c11429b, type: 3}
       propertyPath: notEnoughCoinsText
       value: 

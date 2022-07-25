@@ -39,6 +39,10 @@ public class ShipMover : MonoBehaviour
     // FRR slow down support
     Timer fuelTimer;
 
+    // Fuel can support
+    private FuelCanSpawner fuelCanSpawner;
+    private float fuelCanSpawnChance;
+
     // GameOver event support
     GameOverEvent gameOverEvent = new GameOverEvent();
 
@@ -102,8 +106,12 @@ public class ShipMover : MonoBehaviour
         paused = false;
 
         fuelTimer = gameObject.AddComponent<Timer>();
-        fuelTimer.Duration = 40;
+        fuelTimer.Duration = 30;
         fuelTimer.Run();
+
+        // Init fuel can spawning.
+        fuelCanSpawner = GetComponent<FuelCanSpawner>();
+        fuelCanSpawnChance = GameManager.FuelCanSpawnChance;
     }
 
     // Update is called once per frame
@@ -114,6 +122,12 @@ public class ShipMover : MonoBehaviour
         {
             fuelRefillRate *= 0.95f;
             fuelTimer.Run();
+
+            // Try spawning FuelCan
+            if (Random.value <= fuelCanSpawnChance)
+            {
+                fuelCanSpawner.SpawnFuelCan();
+            }
         }
 
         //if (Input.touchCount == 1)

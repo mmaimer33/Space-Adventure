@@ -27,18 +27,15 @@ public class FuelCanSpawner : MonoBehaviour
 
     void Start()
     {
-        frequency = GameManager.FuelCanFrequency;
         minY = ScreenUtils.ScreenBottom + 1;
         maxY = ScreenUtils.ScreenTop - 1;
         fuelCanPosition = new Vector3();
-
-        InvokeRepeating("SpawnFuelCan", 30, frequency);
     }
 
     /// <summary>
     /// Spawns in a fuel can in between the min and max Y values.
     /// </summary>
-    private void SpawnFuelCan()
+    public void SpawnFuelCan()
     {
         fuelCanPosition.x = ship.transform.position.x + DistanceFromShip;
         fuelCanPosition.y = Random.Range(minY, maxY);
