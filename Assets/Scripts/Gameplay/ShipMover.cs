@@ -116,6 +116,7 @@ public class ShipMover : MonoBehaviour
         if (fuelTimer.Finished)
         {
             fuelRefillRate *= 0.95f;
+            fuelTimer.Run();
         }
 
         if (Input.touchCount == 1)
