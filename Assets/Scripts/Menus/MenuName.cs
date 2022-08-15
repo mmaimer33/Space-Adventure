@@ -12,5 +12,6 @@ public enum MenuName
     Settings,
     Shop,
     Tutorial,
+    Credits,
     Pause
 }

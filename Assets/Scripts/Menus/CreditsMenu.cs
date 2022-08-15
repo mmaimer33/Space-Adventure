@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialMenu : MonoBehaviour
+public class CreditsMenu : MonoBehaviour
 {
     /// <summary>
     /// Handles on-click event of back button:

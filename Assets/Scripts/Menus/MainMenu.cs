@@ -65,9 +65,9 @@ public class MainMenu : MonoBehaviour
     /// <summary>
     /// Handles on-click event of credits button: goes to credits page.
     /// </summary>
-    //public void HandleCreditsButtonOnClick()
-    //{
-    //    AudioManager.Play(AudioClipName.Button1);
-    //    SceneManager.LoadScene("Credits");
-    //}
+    public void HandleCreditsButtonOnClick()
+    {
+        AudioManager.Play(AudioClipName.Button1);
+        SceneManager.LoadScene("Credits");
+    }
 }

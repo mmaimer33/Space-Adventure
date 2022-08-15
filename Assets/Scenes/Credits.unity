@@ -273,8 +273,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TutorialMenu, Assembly-CSharp
+      - m_Target: {fileID: 447438314}
+        m_TargetAssemblyTypeName: CreditsMenu, Assembly-CSharp
         m_MethodName: HandleBackButtonOnClick
         m_Mode: 1
         m_Arguments:
@@ -930,6 +930,7 @@ GameObject:
   - component: {fileID: 447438313}
   - component: {fileID: 447438312}
   - component: {fileID: 447438311}
+  - component: {fileID: 447438314}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1003,6 +1004,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &447438314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447438310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3a1b1acf8ae4be3acf71bffa68d36d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &535748733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2682,8 +2695,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1704494627}
   m_HandleRect: {fileID: 1704494626}
   m_Direction: 2
-  m_Value: 0.9946794
-  m_Size: 0.3856465
+  m_Value: 0.9946795
+  m_Size: 0.38564652
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

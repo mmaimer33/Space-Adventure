@@ -34,6 +34,10 @@ public static class MenuManager
                 SceneManager.LoadScene("Tutorial");
                 break;
 
+            case MenuName.Credits:
+                SceneManager.LoadScene("Credits");
+                break;
+
             case MenuName.Pause:
 
                 Object.Instantiate(Resources.Load("PauseMenu"));
